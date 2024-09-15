@@ -1,0 +1,14 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "name": "JavaScript basic",
+      "description": "Lập trình JavaScript cơ bản"
+    },
+    {
+      "id": "2",
+      "name": "JavaScript advanced",
+      "description": "Lập trình JavaScript nâng cao"
+    }
+  ]
+}
