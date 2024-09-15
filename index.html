@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .red-color {
+            color: red;
+        }
+
+        .menu {
+            display: none;
+            background-color: rgb(218, 144, 39);
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 200px;   
+            animation: animation linear 100ms;
+        }
+
+        .displayBlock {
+            display: block;
+        }
+
+        #btnMenuOpen {
+            position: relative;
+            top: 0;
+            right: 0;
+            display: inline-block;
+        }
+
+        button {
+            min-width: 25px;
+            width: auto;
+            height: 30px;
+            padding: 4px;
+            /*color: white;*/
+            /*background-color: orangered;*/
+            border: 1px solid gray;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        input {
+            width: 200px;
+            padding: 4px;
+        }
+
+        @keyframes animation {
+            0% {
+                left: -200px;
+                opacity: 0;
+            }
+
+            100% {
+                left: 0;
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <h1 id="heading">Heading</h1> -->
+
+    <!-- <ul class="courses-list">
+
+    </ul> -->
+
+    <!-- <button id="btnMenuOpen">Menu</button>
+
+    <div id="mainMenu" class="menu">
+        <button id="btnMenuClose">X</button>
+        <ul>
+            <li>Javascript</li>
+            <li>PHP</li>
+            <li>Ruby</li>
+        </ul>
+    </div> -->
+
+    <!-- May tinh tuoi -->
+    <!-- <div>
+        Máy Tính Tuổi<br>Nhập số tuổi của bạn
+        <br><input type="number">
+        <button type="submit"></button>
+        <div class="box"></div>
+    </div> -->
+
+    <!-- Comment Box -->
+    <!-- <div class="comment-box">
+        <div class="post-comment">
+            <input type="text">
+            <button type="submit">Bình luận</button>
+        </div>
+        <ul>
+            //Test Comment
+            <li>
+                <div class="userInfor">
+                    <a href="#">
+                        <img src="" alt="">
+                        <div class="user-name"></div>
+                    </a>
+                </div>
+                <div class="content"></div>
+            </li>
+        </ul>
+    </div> -->
+
+
+    <!-- Quan li khoa hoc -->
+    <div class="test-2"></div>
+    <div>
+        <h2>Danh sách khóa học</h2>
+
+        <ul id="list-courses"></ul>
+    </div>
+
+    <div id="create-courses-form">
+        <div>
+            <label for="name">Name</label>
+            <input placeholder="Name" type="text" name="name" id="">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input placeholder="Description" type="text" name="description" id="">
+        </div>
+        <button id="create">Create</button>
+        <button style="display: none" id="edit">Chỉnh sửa</button>
+        <button style="display: none;" id="cancel-editing">Hủy</button>
+    </div>
+
+    <!-- comment-box -->
+    <!-- <style>
+        .comment-box {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 25vw;
+            box-shadow: 0 0 10px #000;
+            display: block;
+            color: rgb(54, 54, 54);
+            padding: 20px;
+            overflow: scroll;
+        }
+        
+        @media (min-width: 320px) and (max-width: 520px) {
+            .comment-box {
+                width: 100vw;
+            }
+        }
+
+        .comment-box .post-comment {
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-box .post-comment input {
+            font-size: 16px;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .comment-box .post-comment button {
+            background-color: #fff;
+            color:  green;
+            border-radius: 4px;
+            margin-left: 12px;
+            padding: 4px;
+            width: auto;
+        }
+
+        .comment-box .post-comment button:hover {
+            background-color: rgb(240, 248, 255);
+        }
+
+        .comment-box ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .comment-box ul li {
+            width: 100%;
+        }
+
+        .comment-box a {
+            color: #000;
+            text-decoration: none;
+            display: flex;
+        }
+
+        .comment-box a img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+        }
+
+        .comment-box a .user-name {
+            font-weight: 600;
+            padding: 10px;
+        }
+
+        .comment-box .userInfor {
+            padding: 10px;
+        }
+
+        .comment-box .content {
+            padding: 10px;
+        }
+    </style> -->
+
+    <script src="./main.js"></script>
+</body>
+</html>
