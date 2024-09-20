@@ -568,182 +568,206 @@
 // }
 
 // Courses Management?
+//  //////////  //////////  //      //  //////////  //////////  //////////
+//  //          //      //  //      //  //          //          //
+//  //          //      //  //      //  //          //          //
+//  //          //      //  //      //  //////////  //////////  //////////
+//  //          //      //  //      //          //  //                  //
+//  //          //      //  //      //          //  //                  //
+//  //////////  //////////  //////////  //////////  //////////  //////////
 
-var coursesAPI = 'http://localhost:3000/courses';
+// var coursesAPI = 'http://localhost:3000/courses';
 
 
-function start() {
-    getCourses(renderCourses);
+// function start() {
+//     getCourses(renderCourses);
 
-    handleCreateForm()
-}
+//     handleCreateForm()
+// }
 
-start();
+// start();
 
-// Function
-function getCourses(callback) {
-    fetch(coursesAPI)
-        .then(function(respon) {
-            return respon.json();
-        })
-        .then(callback)
-}
+// // Function
+// function getCourses(callback) {
+//     fetch(coursesAPI)
+//         .then(function(respon) {
+//             return respon.json();
+//         })
+//         .then(callback)
+// }
 
-function CreateCourse(data, callback) {
-    var options = {
-        method: "POST",
-        headers: {
-            'Content-Type': 'Application/json'
-        },
-        body: JSON.stringify(data)
-    }
-    fetch(coursesAPI, options)
-        .then(function(respon) {
-            //return
-            respon.json();
-        })
-        .then(callback);
-}
+// function CreateCourse(data, callback) {
+//     var options = {
+//         method: "POST",
+//         headers: {
+//             'Content-Type': 'Application/json'
+//         },
+//         body: JSON.stringify(data)
+//     }
+//     fetch(coursesAPI, options)
+//         .then(function(respon) {
+//             //return
+//             respon.json();
+//         })
+//         .then(callback);
+// }
 
-function handleDeleteCourses(id) {
-    var options = {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'Application/json'
-        }
-    }
-    fetch(`${coursesAPI}/${String(id)}`, options)
-        .then(function(respon) {
-            respon.json();
-        })
-        .then(function() {
-            var courseItem = document.querySelector('.course-item-' + `${id}`);
-            if(courseItem) {
-                courseItem.remove();
-            };
-        });
-}
+// function handleDeleteCourses(id) {
+//     var options = {
+//         method: 'DELETE',
+//         headers: {
+//             'Content-Type': 'Application/json'
+//         }
+//     }
+//     fetch(`${coursesAPI}/${String(id)}`, options)
+//         .then(function(respon) {
+//             respon.json();
+//         })
+//         .then(function() {
+//             var courseItem = document.querySelector('.course-item-' + `${id}`);
+//             if(courseItem) {
+//                 courseItem.remove();
+//             };
+//         });
+// }
 
-function handleEditCourses(id) {
-    fetch(`${coursesAPI}/${id}`)
-        .then(function(respon) {
-            return respon.json()
-        })
-        .then(function(courseEditing) {
-            let nameEditing = document.querySelector('input[name="name"]');
-            nameEditing.value = courseEditing.name;
-            let descriptionEditing = document.querySelector('input[name="description"]');
-            descriptionEditing.value = courseEditing.description;
-            var createBtn = document.querySelector('button#create');
+// function handleEditCourses(id) {
+//     fetch(`${coursesAPI}/${id}`)
+//         .then(function(respon) {
+//             return respon.json()
+//         })
+//         .then(function(courseEditing) {
+//             let nameEditing = document.querySelector('input[name="name"]');
+//             nameEditing.value = courseEditing.name;
+//             let descriptionEditing = document.querySelector('input[name="description"]');
+//             descriptionEditing.value = courseEditing.description;
+//             var createBtn = document.querySelector('button#create');
 
-            createBtn.style.display = 'none';
+//             createBtn.style.display = 'none';
 
-            var editBtn = document.querySelector('button#edit');
+//             var editBtn = document.querySelector('button#edit');
 
-            editBtn.style.display = 'block';
+//             editBtn.style.display = 'block';
 
-            var btnCancelEditing = document.querySelector('#cancel-editing')
+//             var btnCancelEditing = document.querySelector('#cancel-editing')
 
-            btnCancelEditing.style.display = 'block';
+//             btnCancelEditing.style.display = 'block';
 
-            editBtn.onclick = function() {
-                if(!nameEditing.value) {
-                    return ;
-                }
-                editCourses(id, nameEditing, descriptionEditing, createBtn, editBtn, btnCancelEditing);
-            }
+//             editBtn.onclick = function() {
+//                 if(!nameEditing.value) {
+//                     return ;
+//                 }
+//                 editCourses(id, nameEditing, descriptionEditing, createBtn, editBtn, btnCancelEditing);
+//             }
 
-            btnCancelEditing.onclick = function() {
-                createBtn.style.display = 'block';
-                editBtn.style.display = 'none';
-                btnCancelEditing.style.display = 'none';
+//             btnCancelEditing.onclick = function() {
+//                 createBtn.style.display = 'block';
+//                 editBtn.style.display = 'none';
+//                 btnCancelEditing.style.display = 'none';
 
-                resetValueCreateForm();
+//                 resetValueCreateForm();
 
-                // editBtn.onclick = function() {}
-            }
-        })
-}
+//                 // editBtn.onclick = function() {}
+//             }
+//         })
+// }
 
-function editCourses(id, nameEditing, descriptionEditing, createBtn, editBtn, btnCancelEditing) {
+// function editCourses(id, nameEditing, descriptionEditing, createBtn, editBtn, btnCancelEditing) {
 
-    let formData = {
-        name: nameEditing.value,
-        description: descriptionEditing.value
-    }
+//     let formData = {
+//         name: nameEditing.value,
+//         description: descriptionEditing.value
+//     }
 
-    let options = {
-        method: 'PATCH',
-        body: JSON.stringify(formData)
-    }
+//     let options = {
+//         method: 'PATCH',
+//         body: JSON.stringify(formData)
+//     }
 
-    fetch(`${coursesAPI}/${id}`, options)
-        .then(function(respon) {
-            return respon.json()
-        })
-        .then(function(courseEditing) {
-            document.querySelector('.course-item-' + id + ' h4').innerText = courseEditing.name;
-            document.querySelector('.course-item-' + id + ' p').innerText = courseEditing.description;
-            createBtn.style.display = 'block';
-            editBtn.style.display = 'none';
-            btnCancelEditing.style.display = 'none';
+//     fetch(`${coursesAPI}/${id}`, options)
+//         .then(function(respon) {
+//             return respon.json()
+//         })
+//         .then(function(courseEditing) {
+//             document.querySelector('.course-item-' + id + ' h4').innerText = courseEditing.name;
+//             document.querySelector('.course-item-' + id + ' p').innerText = courseEditing.description;
+//             createBtn.style.display = 'block';
+//             editBtn.style.display = 'none';
+//             btnCancelEditing.style.display = 'none';
 
-            resetValueCreateForm();
-        })
-}
+//             resetValueCreateForm();
+//         })
+// }
 
-function renderCourses(courses) {
-    var listCoursesBlock = document.querySelector('#list-courses');
-    var html = '';
-    courses.forEach(function(course) {
-        html += 
-        `
-            <li class='course-item-${course.id}'>
-                <h4>${course.name}</h4>
-                <p>${course.description}</p>
-                <button onclick="handleDeleteCourses('${course.id}')">Xóa</button>
-                <button onclick="handleEditCourses('${course.id}')">Chỉnh sửa</button>
-            </li>
-        `
-    });
-    listCoursesBlock.innerHTML = html;
-}
+// function renderCourses(courses) {
+//     var listCoursesBlock = document.querySelector('#list-courses');
+//     var html = '';
+//     courses.forEach(function(course) {
+//         html += 
+//         `
+//             <li class='course-item-${course.id}'>
+//                 <h4>${course.name}</h4>
+//                 <p>${course.description}</p>
+//                 <button onclick="handleDeleteCourses('${course.id}')">Xóa</button>
+//                 <button onclick="handleEditCourses('${course.id}')">Chỉnh sửa</button>
+//             </li>
+//         `
+//     });
+//     listCoursesBlock.innerHTML = html;
+// }
 
-function handleCreateForm() {
-    var createBtn = document.querySelector('#create')
+// function handleCreateForm() {
+//     var createBtn = document.querySelector('#create')
 
-    createBtn.onclick = function() {
-        var name = document.querySelector('input[name="name"]').value;
-        var description = document.querySelector('input[name="description"]').value;
+//     createBtn.onclick = function() {
+//         var name = document.querySelector('input[name="name"]').value;
+//         var description = document.querySelector('input[name="description"]').value;
 
-        if(!name) {
-            return ;
-        }
+//         if(!name) {
+//             return ;
+//         }
 
-        var formData = {
-            name: name,
-            description: description
-        }
+//         var formData = {
+//             name: name,
+//             description: description
+//         }
 
-        CreateCourse(formData, function() {
-            getCourses(renderCourses)
-        })
+//         CreateCourse(formData, function() {
+//             getCourses(renderCourses)
+//         })
 
-        // C2: function(course) {renderCourses(courses)}
-        // listCoursesBlock.innerHTML += html;
+//         // C2: function(course) {renderCourses(courses)}
+//         // listCoursesBlock.innerHTML += html;
 
-        resetValueCreateForm();
-    }
-}
+//         resetValueCreateForm();
+//     }
+// }
 
-function resetValueCreateForm() {
-    document.querySelector('input[name="name"]').value = '';
-    document.querySelector('input[name="description"]').value = '';
-};
+// function resetValueCreateForm() {
+//     document.querySelector('input[name="name"]').value = '';
+//     document.querySelector('input[name="description"]').value = '';
+// };
 
 // Bài tập
 // Done!
 
+// function highlight([a, ...b], ...c) {
+//     console.log(a,b,c)
+// }
+
+// var course = 'JavaScript', nameT = 'F8'
+
+// highlight`HLC ${course} tai ${nameT}!`
+
+// import * as des from './app.js'
+
+// console.log(des.c)
+
+// export {a} from './app.js'
+
+// var a = [1,2,3]
+
+// console.log(a[3]?.())
 
 
 
