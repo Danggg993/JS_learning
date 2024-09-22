@@ -769,14 +769,168 @@
 
 // console.log(a[3]?.())
 
+//  ///    ///  //      //    //////    //    ////// 
+//  // // ////  //      //  //      //  //  //      //
+//  //  //  //  //      //    ///       //  //
+//  //      //  //      //       ///    //  //
+//  //      //  //      //  //      //  //  //      //
+//  //      //  //////////    //////    //    //////
+
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+const PlAYER_STORAGE_KEY = "F8_PLAYER";
+
+const player = $(".player");
+const cd = $(".cd");
+const heading = $("header h2");
+const cdThumb = $(".cd-thumb");
+const audio = $("#audio");
+const playBtn = $(".btn-toggle-play");
+const progress = $("#progress");
+const prevBtn = $(".btn-prev");
+const nextBtn = $(".btn-next");
+const randomBtn = $(".btn-random");
+const repeatBtn = $(".btn-repeat");
+const playlist = $(".playlist");
+
+const app = {
+    currentIndex: 0,
+    // isPlaying: false,
+    // isRandom: false,
+    // isRepeat: false,
+    // config: {},
+    // (1/2) Uncomment the line below to use localStorage
+    // config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) || {},
+    songs: [
+    {
+        name: "Nevada",
+        singer: "Cozi Zuehlsdorff",
+        path: "./songs/y2mate.com - Vicetone  Nevada ft Cozi Zuehlsdorff.mp3",
+        image: "https://i.scdn.co/image/ab67616d0000b273a77236d5841acfa22dbd79da"
+    },
+    {
+        name: "Thằng Điên",
+        singer: "JUSTATEE x PHƯƠNG LY",
+        path: "./songs/y2mate.com - THẰNG ĐIÊN  JUSTATEE x PHƯƠNG LY  OFFICIAL MV.mp3",
+        image: "https://i1.sndcdn.com/artworks-r69juSNvR6HpKqfD-5DRVTg-t500x500.jpg"
+    },
+    {
+        name: "Đừng làm trái tim anh đau",
+        singer: "SƠN TÙNG MTP",
+        path: "./songs/y2mate.com - SƠN TÙNG MTP  ĐỪNG LÀM TRÁI TIM ANH ĐAU  OFFICIAL MUSIC VIDEO.mp3",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoy3jYMiZv_qFfulpOSIStZn1ECvxjp-tGQ&s"
+    },
+    {
+        name: "YOASOBI夜に駆ける",
+        singer: "YOASOBI",
+        path: "./songs/y2mate.com - YOASOBI夜に駆ける Official Music Video.mp3",
+        image: "https://i.scdn.co/image/ab67616d0000b273c5716278abba6a103ad13aa7"
+    },
+    {
+        name: "Xomu",
+        singer: "Lanterns",
+        path: "./songs/y2mate.com - Xomu  Lanterns.mp3",
+        image: "https://i1.sndcdn.com/artworks-000347774796-dy8ib4-t500x500.jpg"
+    },
+    {
+        name: "Runaway",
+        singer: "AURORA",
+        path: "./songs/y2mate.com - AURORA  Runaway.mp3",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMDiBo81_ot46oBr-Jh7WRdoxZ56iUTfLghw&s"
+    },
+    {
+        name: "How To Love",
+        singer: "Cash Cash ft Sofia Reyes",
+        path: "./songs/y2mate.com - How To Love  Cash Cash ft Sofia Reyes Lyrics  Vietsub .mp3",
+        image: "https://i.ytimg.com/vi/jrw6iE1UOHg/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDN-BD0Y0EyqZbAQNmkn1gX-CX0nw"
+    },
+    {
+        name: "Moog City",
+        singer: "C418",
+        path: "./songs/y2mate.com - C418  Moog City  Minecraft Volume Alpha.mp3",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3W_gkq-HFCMnB5-EFBE1TTAk57QMGhIVcXw&s"
+    },
+    {
+        name: "Cure For Me",
+        singer: "AURORA",
+        path: "./songs/y2mate.com - AURORA  Cure For Me.mp3",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc8L3RofjuXPXevY-iS5Y6jZQzeOQZVUxjcg&s"
+    },
+
+    ],
+    
+    render: function() {
+        const htmls = this.songs.map((song) => {
+            return `
+            <div class="song"">
+                <div class="thumb"
+                    style="background-image: url('${song.image}')">
+                </div>
+                <div class="body">
+                    <h3 class="title">${song.name}</h3>
+                    <p class="author">${song.singer}</p>
+                </div>
+                <div class="option">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            `
+        })
+
+        playlist.innerHTML = htmls.join('')
+    },
+    defineProperties: function() {
+        Object.defineProperty(this, 'currentSong', {
+            get: function() {
+                return this.songs[this.currentIndex]
+            }
+        })
+    },
+    
+    //start() {} 
+    handleEvents: function() {
+        const cd = $('.cd')
+        const cdWidth = cd.offsetWidth
+
+        document.onscroll = function() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop
+            let newCdWidth = cdWidth - scrollTop
+
+            
+            cd.style.width = newCdWidth>0? newCdWidth + 'px': 0
+            cd.style.opacity = newCdWidth>0? newCdWidth/cdWidth:0
+
+        }
 
 
 
 
+    },
+    loadCurrentSong: function() {
+        heading.textContent = this.currentSong.name
+        cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
+        audio.src = this.currentSong.path
+    },
 
 
+    start: function() {
+        // Định nghĩa các thuộc tính cho Object
+        this.defineProperties()
 
+        // Lắng nghe/ Xử lí các sự kiện
+        this.handleEvents()
 
+        // Tải thông tin bài hát đầu tiên vào UI khi chay ung dung
+        this.loadCurrentSong()
+
+        // Render Playlist
+        this.render()
+    },
+
+      
+}
+
+app.start()
 
 
 
