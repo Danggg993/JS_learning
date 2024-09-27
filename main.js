@@ -795,7 +795,7 @@ const playlist = $(".playlist");
 
 const app = {
     currentIndex: 0,
-    // isPlaying: false,
+    isPlaying: false,
     // isRandom: false,
     // isRepeat: false,
     // config: {},
@@ -889,9 +889,20 @@ const app = {
     
     //start() {} 
     handleEvents: function() {
-        const cd = $('.cd')
+        const _this =this
         const cdWidth = cd.offsetWidth
 
+        // Xử lí cd thumbnail
+        const cdThumbAnimate = cdThumb.animate([
+            { transform: 'rotate(360deg)' }
+        ], {
+            duration: 10000,
+            iterations: Infinity
+        })
+
+        cdThumbAnimate.pause()
+
+        // Xử lí phóng to/ thu nhỏ CD
         document.onscroll = function() {
             const scrollTop = window.scrollY || document.documentElement.scrollTop
             let newCdWidth = cdWidth - scrollTop
@@ -899,17 +910,75 @@ const app = {
             
             cd.style.width = newCdWidth>0? newCdWidth + 'px': 0
             cd.style.opacity = newCdWidth>0? newCdWidth/cdWidth:0
-
         }
 
+        // Xử lí khi click play
+        playBtn.onclick = function() {
+            if (_this.isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+        }
 
+        // Khi song được play
+        audio.onplay = function() {
+            _this.isPlaying = 1;
+            player.classList.add('playing');
+            cdThumbAnimate.play();
+        }
+        
+        // Khi song được pause
+        audio.onpause = function() {
+            _this.isPlaying = 0;
+            player.classList.remove('playing');
+            cdThumbAnimate.pause();
+        }
 
+        // Khi tiến độ bài hát thay đổi
+        audio.ontimeupdate = function() {
+            if (audio.duration) {
+                const progressPersec = Math.floor((audio.currentTime / audio.duration) *100)
+                progress.value = progressPersec
+            }
+        }
 
+        // Xứ lí khi tua song
+        progress.onchange = function(e) {
+          const seekTime = progress.value * audio.duration / 100
+          audio.currentTime = seekTime;
+        }
+
+        // Xử lí khi next song
+        nextBtn.onclick = function() {
+            _this.nextSong()
+            audio.play();
+        }
+        
+        // Xử lí khi prev song
+        prevBtn.onclick = function() {
+            _this.prevSong()
+            audio.play();
+        }     
     },
     loadCurrentSong: function() {
         heading.textContent = this.currentSong.name
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
         audio.src = this.currentSong.path
+    },
+    nextSong: function() {
+        this.currentIndex++
+        if (this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0
+        }
+        this.loadCurrentSong()
+    },
+    prevSong: function() {
+        this.currentIndex--
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1
+        }
+        this.loadCurrentSong()
     },
 
 
@@ -933,6 +1002,12 @@ const app = {
 app.start()
 
 
+//ANIMATE OBJECT
+//ANIMATE OBJECT
+//ANIMATE OBJECT
+//ANIMATE OBJECT
+//ANIMATE OBJECT
+//ANIMATE OBJECT
 
 
 
