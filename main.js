@@ -796,8 +796,8 @@ const playlist = $(".playlist");
 const app = {
     currentIndex: 0,
     isPlaying: false,
-    // isRandom: false,
-    // isRepeat: false,
+    isRandom: false,
+    isRepeat: false,
     // config: {},
     // (1/2) Uncomment the line below to use localStorage
     // config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) || {},
@@ -860,9 +860,9 @@ const app = {
     ],
     
     render: function() {
-        const htmls = this.songs.map((song) => {
+        const htmls = this.songs.map((song, index) => {
             return `
-            <div class="song"">
+            <div class="song ${index === this.currentIndex ? 'active': ''}">
                 <div class="thumb"
                     style="background-image: url('${song.image}')">
                 </div>
@@ -951,15 +951,56 @@ const app = {
 
         // Xử lí khi next song
         nextBtn.onclick = function() {
-            _this.nextSong()
+            if (_this.isRandom) {
+                _this.playRandomSong()
+            } else {
+                _this.nextSong()
+            }
             audio.play();
+            _this.render()
+            _this.scollToActiveSong()
         }
         
         // Xử lí khi prev song
         prevBtn.onclick = function() {
-            _this.prevSong()
+            if (_this.isRandom) {
+                _this.playRandomSong()
+            } else {
+                _this.prevSong()
+            }
             audio.play();
-        }     
+            _this.render()
+            _this.scollToActiveSong()
+        }
+
+        // Xử lí bật / tắt random song
+        randomBtn.onclick = function(event) {
+            _this.isRandom = !_this.isRandom
+            randomBtn.classList.toggle('active', _this.isRandom)
+        }
+
+        // Xử lí khi audio onended
+        audio.onended = function() {
+            if (_this.isRepeat) {
+                audio.play()
+            } else {
+                nextBtn.onclick()
+            }
+        }
+
+        // Xử lí lặp lại song
+        repeatBtn.onclick = function() {
+            _this.isRepeat = !_this.isRepeat
+            this.classList.toggle('active', _this.isRepeat)
+        }
+    },
+    scollToActiveSong: function() {
+        setTimeout(() => {
+            $('.song.active').scollInoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            })
+        }, 100)
     },
     loadCurrentSong: function() {
         heading.textContent = this.currentSong.name
@@ -978,6 +1019,16 @@ const app = {
         if (this.currentIndex < 0) {
             this.currentIndex = this.songs.length - 1
         }
+        this.loadCurrentSong()
+    },
+    playRandomSong: function() {
+        let newIndex
+        
+        do {
+            newIndex = Math.floor(Math.random() * this.songs.length)
+        } while(newIndex === this.currentIndex)
+
+        this.currentIndex = newIndex
         this.loadCurrentSong()
     },
 
@@ -1009,6 +1060,8 @@ app.start()
 //ANIMATE OBJECT
 //ANIMATE OBJECT
 
+// tránh lặp lại các bài hát đã phát trước đó khi random
+// scollIntoView
 
 
 
