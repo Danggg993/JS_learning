@@ -806,31 +806,31 @@ const app = {
     {
         name: "Nevada",
         singer: "Cozi Zuehlsdorff",
-        path: "./songs/y2mate.com - Vicetone  Nevada ft Cozi Zuehlsdorff.mp3",
+        path: "./y2mate.com - Vicetone  Nevada ft Cozi Zuehlsdorff.mp3",
         image: "https://i.scdn.co/image/ab67616d0000b273a77236d5841acfa22dbd79da"
     },
     {
         name: "Thằng Điên",
         singer: "JUSTATEE x PHƯƠNG LY",
-        path: "./songs/y2mate.com - THẰNG ĐIÊN  JUSTATEE x PHƯƠNG LY  OFFICIAL MV.mp3",
+        path: "./y2mate.com - THẰNG ĐIÊN  JUSTATEE x PHƯƠNG LY  OFFICIAL MV.mp3",
         image: "https://i1.sndcdn.com/artworks-r69juSNvR6HpKqfD-5DRVTg-t500x500.jpg"
     },
     {
         name: "Đừng làm trái tim anh đau",
         singer: "SƠN TÙNG MTP",
-        path: "./songs/y2mate.com - SƠN TÙNG MTP  ĐỪNG LÀM TRÁI TIM ANH ĐAU  OFFICIAL MUSIC VIDEO.mp3",
+        path: "./y2mate.com - SƠN TÙNG MTP  ĐỪNG LÀM TRÁI TIM ANH ĐAU  OFFICIAL MUSIC VIDEO.mp3",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoy3jYMiZv_qFfulpOSIStZn1ECvxjp-tGQ&s"
     },
     {
         name: "YOASOBI夜に駆ける",
         singer: "YOASOBI",
-        path: "./songs/y2mate.com - YOASOBI夜に駆ける Official Music Video.mp3",
+        path: "./y2mate.com - YOASOBI夜に駆ける Official Music Video.mp3",
         image: "https://i.scdn.co/image/ab67616d0000b273c5716278abba6a103ad13aa7"
     },
     {
         name: "Xomu",
         singer: "Lanterns",
-        path: "./songs/y2mate.com - Xomu  Lanterns.mp3",
+        path: "./y2mate.com - Xomu  Lanterns.mp3",
         image: "https://i1.sndcdn.com/artworks-000347774796-dy8ib4-t500x500.jpg"
     },
     {
@@ -842,19 +842,19 @@ const app = {
     {
         name: "How To Love",
         singer: "Cash Cash ft Sofia Reyes",
-        path: "./songs/y2mate.com - How To Love  Cash Cash ft Sofia Reyes Lyrics  Vietsub .mp3",
+        path: "./y2mate.com - How To Love  Cash Cash ft Sofia Reyes Lyrics  Vietsub .mp3",
         image: "https://i.ytimg.com/vi/jrw6iE1UOHg/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDN-BD0Y0EyqZbAQNmkn1gX-CX0nw"
     },
     {
         name: "Moog City",
         singer: "C418",
-        path: "./songs/y2mate.com - C418  Moog City  Minecraft Volume Alpha.mp3",
+        path: "./y2mate.com - C418  Moog City  Minecraft Volume Alpha.mp3",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3W_gkq-HFCMnB5-EFBE1TTAk57QMGhIVcXw&s"
     },
     {
         name: "Cure For Me",
         singer: "AURORA",
-        path: "./songs/y2mate.com - AURORA  Cure For Me.mp3",
+        path: "./y2mate.com - AURORA  Cure For Me.mp3",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc8L3RofjuXPXevY-iS5Y6jZQzeOQZVUxjcg&s"
     },
 
