@@ -836,7 +836,7 @@ const app = {
     {
         name: "Runaway",
         singer: "AURORA",
-        path: "./songs/y2mate.com - AURORA  Runaway.mp3",
+        path: "./y2mate.com - AURORA  Runaway.mp3",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMDiBo81_ot46oBr-Jh7WRdoxZ56iUTfLghw&s"
     },
     {
